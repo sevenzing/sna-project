@@ -21,13 +21,18 @@ def new_page_name() -> str:
         if db.get_url(short_url) is None:
             break
 
+def _using_cors(response):
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
+
 
 @app.route('/shorten_url', methods=['POST'])
 def shorten_url():
     url = request.json['url']
-    short_url = urljoin(config.site_domain, new_page_name())
-    db.put_url(short_url, url)
-    return jsonify({'url': short_url})
+    key = new_page_name()
+    db.put_url(key, url)
+    short_url = urljoin(config.site_domain, key)
+    return _using_cors(jsonify({'url': short_url}))
 
 
 @app.route('/<path:url>', methods=['GET'])

@@ -15,11 +15,16 @@ import config
 
 app = Flask(__name__)
 
+
 def new_page_name() -> str:
     while True:
-        short_url = random.choices((string.ascii_letters, string.digits), k=6)
+        short_url = ''.join(
+            random.choices(string.ascii_letters+string.digits, k=6)
+        )
         if db.get_url(short_url) is None:
             break
+    return short_url
+
 
 def _using_cors(response):
     response.headers.add("Access-Control-Allow-Origin", "*")

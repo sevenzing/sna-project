@@ -1,2 +1,2 @@
 # Domain where the site is hosted
-site_domain = "localhost"
+site_domain = "http://localhost/"

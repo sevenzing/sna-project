@@ -6,6 +6,7 @@
 """
 
 from flask import Flask, jsonify, redirect, request, abort
+from flask_cors import CORS
 import string
 import random
 from urllib.parse import urljoin
@@ -14,6 +15,7 @@ import config
 
 
 app = Flask(__name__)
+CORS(app)
 
 
 def new_page_name() -> str:
@@ -46,7 +48,7 @@ def get(url):
     target_url = db.get_url(url)
     if target_url is None:
         abort(404)
-    return redirect(target_url)
+    return _using_cors(redirect(target_url))
 
 
 if __name__ == '__main__':

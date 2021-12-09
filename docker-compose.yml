@@ -1,6 +1,18 @@
 version: '3'
 services:
   backend:
-    ...
+    build: .
+    ports:
+      - "5000:5000"
+    networks:
+      - local_net
   nginx:
-    ...
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - local_net
+networks:
+  local_net:

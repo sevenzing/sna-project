@@ -1,8 +1,20 @@
 .main {
-    display: flex;
-    justify-content: center;
-    height: 90vh;
     align-items: center;
+    display: flex;
+    height: 90vh;
+    justify-content: center;
+}
+
+body {
+    font-family: Arial, Verdana, sans-serif;
+}
+
+input {
+    padding: 3px 7px 3px 3px;
+}
+
+button {
+    padding: 3px 7px;
 }
 
 p {

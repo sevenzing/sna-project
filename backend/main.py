@@ -38,11 +38,11 @@ def shorten_url():
     url = request.json['url']
     key = new_page_name()
     db.put_url(key, url)
-    short_url = urljoin(config.site_domain, key)
+    short_url = urljoin(config.site_domain, 'u/' + key)
     return _using_cors(jsonify({'url': short_url}))
 
 
-@app.route('/<path:url>', methods=['GET'])
+@app.route('/u/<path:url>', methods=['GET'])
 def get(url):
     print(f'ask to redirect from {url!r}')
     target_url = db.get_url(url)
